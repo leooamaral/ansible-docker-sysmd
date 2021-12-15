@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  remote_user: root
+  tasks:
+    - include_role:
+        name: ansible-docker-systemd-service
+      vars:
+        name: myapp
+        container_image: myapp:latest
+        container_links:
+          - 'httpd'
+        container_volumes:
+          - '/root/pv:/var/www/html'
+        container_ports:
+          - '8888:80'
